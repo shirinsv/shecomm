@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+  we have variety of candies for you!!!:)
+{% endblock %}
+{% block title %}
+  Search for your fav candies
+{% endblock %}
+{% block content %}
+<div>
+    <p class="text-center my_search_text">you hava searched for :<b>"{{query}}"</b></p>
+</div>
+<div class="row mx_auto">
+    {% for product in products %}
+    <div class="my_bottom_margin col-9 col-sm-12 col-md-4 col-lg-4">
+      <div class="card text-center" style="min-width:18rem;">
+        <a href="{{product.get_url}}"><img class="card-image-top my_image" src="{{product.image.url}}" alt="{{product.name}}"></a>
+        <div class="card-body">
+          <h4>{{product.name}}</h4>
+          <p>Rs.{{product.price}}</p>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+<div class="row mx_auto">
+    <p class="text-center my_search_text">Zero results found :(</p>
+
+</div>
+    {% endfor %}
+</div>
+{% endblock %}
